@@ -156,82 +156,109 @@ document.querySelectorAll('.dropdown-content a').forEach(item => {
 });
   
 
-document.addEventListener('DOMContentLoaded', () => {
-    const loginModal = document.getElementById('loginModal');
-    const registerModal = document.getElementById('registerModal');
-    const loginButton = document.getElementById('loginButton');
-    const registerButton = document.getElementById('registerButton');
-    const closeLoginModal = document.getElementById('closeLoginModal');
-    const closeRegisterModal = document.getElementById('closeRegisterModal');
+// document.addEventListener('DOMContentLoaded', () => {
+//     const loginModal = document.getElementById('loginModal');
+//     const registerModal = document.getElementById('registerModal');
+//     const loginButton = document.getElementById('loginButton');
+//     const registerButton = document.getElementById('registerButton');
+//     const closeLoginModal = document.getElementById('closeLoginModal');
+//     const closeRegisterModal = document.getElementById('closeRegisterModal');
 
-    loginButton.addEventListener('click', () => {
-        loginModal.style.display = 'flex';
-    });
+//     loginButton.addEventListener('click', () => {
+//         loginModal.style.display = 'flex';
+//     });
 
-    registerButton.addEventListener('click', () => {
-        registerModal.style.display = 'flex';
-    });
+//     registerButton.addEventListener('click', () => {
+//         registerModal.style.display = 'flex';
+//     });
 
-    closeLoginModal.addEventListener('click', () => {
-        loginModal.style.display = 'none';
-    });
+//     closeLoginModal.addEventListener('click', () => {
+//         loginModal.style.display = 'none';
+//     });
 
-    closeRegisterModal.addEventListener('click', () => {
-        registerModal.style.display = 'none';
-    });
+//     closeRegisterModal.addEventListener('click', () => {
+//         registerModal.style.display = 'none';
+//     });
 
-    // Закрытие модального окна при клике вне его
-    window.addEventListener('click', (event) => {
-        if (event.target === loginModal) {
-            loginModal.style.display = 'none';
-        }
-        if (event.target === registerModal) {
-            registerModal.style.display = 'none';
-        }
-    });
+//     // Закрытие модального окна при клике вне его
+//     window.addEventListener('click', (event) => {
+//         if (event.target === loginModal) {
+//             loginModal.style.display = 'none';
+//         }
+//         if (event.target === registerModal) {
+//             registerModal.style.display = 'none';
+//         }
+//     });
+// });
+
+
+// document.getElementById('loginForm').addEventListener('submit', function (e) {
+//     e.preventDefault();
+//     const formData = new FormData(this);
+  
+//     fetch('/login/', {
+//       method: 'POST',
+//       body: formData,
+//       headers: { 'X-CSRFToken': '{{ csrf_token }}' },
+//     })
+//       .then(response => response.json())
+//       .then(data => {
+//         if (data.success) {
+//           alert(data.message);
+//           location.reload();
+//         } else {
+//           alert(data.message);
+//         }
+//       });
+//   });
+  
+//   document.getElementById('registerForm').addEventListener('submit', function (e) {
+//     e.preventDefault();
+//     const formData = new FormData(this);
+  
+//     fetch('/register/', {
+//       method: 'POST',
+//       body: formData,
+//       headers: { 'X-CSRFToken': '{{ csrf_token }}' },
+//     })
+//       .then(response => response.json())
+//       .then(data => {
+//         if (data.success) {
+//           alert(data.message);
+//           location.reload();
+//         } else {
+//           alert(data.message);
+//         }
+//       });
+//   });
+  
+
+document.getElementById('loginButton').addEventListener('click', () => {
+    document.getElementById('loginModal').style.display = 'block';
 });
 
+document.getElementById('registerButton').addEventListener('click', () => {
+    document.getElementById('registerModal').style.display = 'block';
+});
 
-document.getElementById('loginForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-  
-    fetch('/login/', {
-      method: 'POST',
-      body: formData,
-      headers: { 'X-CSRFToken': '{{ csrf_token }}' },
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          alert(data.message);
-          location.reload();
-        } else {
-          alert(data.message);
-        }
-      });
-  });
-  
-  document.getElementById('registerForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const formData = new FormData(this);
-  
-    fetch('/register/', {
-      method: 'POST',
-      body: formData,
-      headers: { 'X-CSRFToken': '{{ csrf_token }}' },
-    })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          alert(data.message);
-          location.reload();
-        } else {
-          alert(data.message);
-        }
-      });
-  });
-  
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+// Закрытие модального окна при клике вне его
+window.onclick = function (event) {
+    const loginModal = document.getElementById('loginModal');
+    const registerModal = document.getElementById('registerModal');
+
+    if (event.target === loginModal) {
+        loginModal.style.display = 'none';
+    }
+
+    if (event.target === registerModal) {
+        registerModal.style.display = 'none';
+    }
+};
+
 
 // let currentSlide = 0;
 

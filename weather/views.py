@@ -4,9 +4,27 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 def index(request):
-    return render(request, 'weather/index.html')
+    return render(request, 'weather/index.html',{
+        'login_form': AuthenticationForm(),
+        'register_form': UserCreationForm(),
+    })
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            messages.success(request, f'Регистрация успешна! Добро пожаловать, {user.username}.')
+            return redirect('index')  # Перенаправление на главную страницу
+        else:
+            messages.error(request, 'Ошибка при регистрации. Проверьте введённые данные.')
+    else:
+        form = UserCreationForm()
+    
+    return render(request, 'weather/index.html', {'register_form': form})
 
 
 def login_view(request):
@@ -20,30 +38,32 @@ def login_view(request):
             return redirect('index')  # Перенаправление на главную страницу
         else:
             messages.error(request, "Неверное имя пользователя или пароль.")  # Ошибка
-            return redirect('login')  # Перенаправление на страницу входа
+            return redirect('index')  # Перенаправление на страницу входа
 
-    return render(request, 'weather/login.html')  # В случае GET-запроса, просто показываем форму входа
+    return render(request, 'weather/index.html')  # В случае GET-запроса, просто показываем форму входа
 
-def register_view(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password1')
-        confirm_password = request.POST.get('password2')
 
-        if password != confirm_password:
-            messages.error(request, "Пароли не совпадают.")  # Ошибка
-            return redirect('register')
 
-        if User.objects.filter(username=username).exists():
-            messages.error(request, "Пользователь с таким именем уже существует.")  # Ошибка
-            return redirect('register')
+# def register_view(request):
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             user = form.save()  # Сохраняем пользователя
+#             username = form.cleaned_data.get('username')
+#             password = form.cleaned_data.get('password1')
 
-        User.objects.create_user(username=username, email=email, password=password)
-        messages.success(request, "Регистрация прошла успешно!")  # Успешное сообщение
-        return redirect('index')  # Перенаправление на главную страницу
+#             # Автоматический вход
+#             user = authenticate(username=username, password=password)
+#             if user is not None:
+#                 login(request, user)
+#                 messages.success(request, f'Добро пожаловать, {user.username}!')
+#                 return redirect('index')  # Редирект на главную страницу
+#         else:
+#             messages.error(request, 'Ошибка при регистрации. Проверьте данные.')
+#     else:
+#         form = UserCreationForm()
 
-    return render(request, 'weather/register.html')
+#     return render(request, 'weather/index.html', {'form': form})
 
 def get_weather(request):
     if request.method == 'GET':
