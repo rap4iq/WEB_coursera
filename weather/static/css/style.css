@@ -97,18 +97,18 @@ main{
     margin: 0;
 }
 
-.container {
+/* .container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 100%;
-}
+} */
 
 
 .container {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
     width: 100%;
@@ -441,6 +441,16 @@ main{
     align-items: flex-start;
 }
 
+@media (max-width: 768px) {
+    .mainweather {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}
+
+
 .weather-block {
     flex: 1;
     margin-right: 20px;
@@ -590,3 +600,83 @@ main{
   .footer-bottom p {
     margin: 5px 0;
   }
+
+
+  @media (max-width: 768px) {
+    .weather-container {
+        width: 100%;
+    }
+
+    .block-container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: none;
+    }
+
+    .time-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .time-block {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-content {
+        padding: 10px;
+    }
+
+    .button {
+        padding: 8px 16px;
+    }
+
+    .time-text {
+        font-size: 0.9rem;
+    }
+
+    .text-center p {
+        font-size: 0.9rem;
+    }
+
+    .add-info p {
+        font-size: 0.8rem;
+    }
+}
+
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}

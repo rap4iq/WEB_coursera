@@ -28,6 +28,15 @@
         <div class="weather-week">
             <a href=""><h4>Погода на 10 дней</h4></a>
         </div>
+
+        <div class="auth-buttons">
+            {% if user.is_authenticated %}
+                <p>Добро пожаловать, {{ user.username }}!</p>
+            {% else %}
+                <button id="loginButton" class="button">Войти</button>
+                <button id="registerButton" class="button">Регистрация</button>
+            {% endif %}
+        </div>
     </header>
     <main>
         <div class="container">
@@ -134,24 +143,6 @@
             </div>
         </div>
     </main>
-    <!-- <footer>
-        <div class="footer-container">
-            <div class="footer-logo">
-                <img class='logo' src="{% static 'images/logo.jpeg' %}" alt="">
-                <h2> Odyssey Weather</h2>
-            </div>
-            <div class="footer-info">
-                <p>© 2021 Odyssey Weather. All rights reserved</p>
-                <p>Privacy Policy</p>
-                <p>Terms of Service</p>
-            </div>
-            <div class="footer-social">
-                <a href=""><i class="fab fa-facebook"></i></a>
-                <a href=""><i class="fab fa-twitter"></i></a>
-                <a href=""><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </footer> -->
     <footer class="footer">
         <div class="footer-container">
           <div class="footer-column">
@@ -202,7 +193,36 @@
           <p>© 2000–2024 ООО «Odyssey»</p>
         </div>
       </footer>
-      
+      <!-- Модальное окно входа -->
+    <div id="loginModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" id="closeLoginModal">&times;</span>
+            <h2>Вход</h2>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Имя пользователя" required>
+                <input type="password" name="password" placeholder="Пароль" required>
+                <button type="submit" class="button">Войти</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модальное окно регистрации -->
+    <div id="registerModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" id="closeRegisterModal">&times;</span>
+            <h2>Регистрация</h2>
+            <form method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Имя пользователя" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password1" placeholder="Пароль" required>
+                <input type="password" name="password2" placeholder="Подтверждение пароля" required>
+                <button type="submit" class="button">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+
     <script src="{% static 'js/script.js' %}"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </body>
