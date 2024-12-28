@@ -5,6 +5,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+import requests
+from django.http import JsonResponse
 
 def index(request):
     return render(request, 'weather/index.html',{
@@ -18,7 +20,8 @@ def register(request):
         if form.is_valid():
             user = form.save()
             messages.success(request, f'Регистрация успешна! Добро пожаловать, {user.username}.')
-            return redirect('index')  # Перенаправление на главную страницу
+            login(request, user)
+            return redirect('index') 
         else:
             messages.error(request, 'Ошибка при регистрации. Проверьте введённые данные.')
     else:
@@ -34,36 +37,15 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            messages.success(request, f"Добро пожаловать, {user.username}!")  # Приветственное сообщение
-            return redirect('index')  # Перенаправление на главную страницу
+            messages.success(request, f"Добро пожаловать, {user.username}!")  
+            return redirect('index') 
         else:
-            messages.error(request, "Неверное имя пользователя или пароль.")  # Ошибка
-            return redirect('index')  # Перенаправление на страницу входа
+            messages.error(request, "Неверное имя пользователя или пароль.")  
+            return redirect('index')  
 
-    return render(request, 'weather/index.html')  # В случае GET-запроса, просто показываем форму входа
+    return render(request, 'weather/index.html')  
 
 
-
-# def register_view(request):
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()  # Сохраняем пользователя
-#             username = form.cleaned_data.get('username')
-#             password = form.cleaned_data.get('password1')
-
-#             # Автоматический вход
-#             user = authenticate(username=username, password=password)
-#             if user is not None:
-#                 login(request, user)
-#                 messages.success(request, f'Добро пожаловать, {user.username}!')
-#                 return redirect('index')  # Редирект на главную страницу
-#         else:
-#             messages.error(request, 'Ошибка при регистрации. Проверьте данные.')
-#     else:
-#         form = UserCreationForm()
-
-#     return render(request, 'weather/index.html', {'form': form})
 
 def get_weather(request):
     if request.method == 'GET':
@@ -92,8 +74,7 @@ def get_weather(request):
     else:
         return JsonResponse({'success': False, 'error': 'Invalid request method'})
 
-import requests
-from django.http import JsonResponse
+
 
 def get_weather_weekly(request):
     if request.method == 'GET':

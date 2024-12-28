@@ -17,7 +17,6 @@ main{
     justify-content: center;
     gap: 50px;
     margin-bottom: 30px;
-    /* width: 100%; */
 }
 
 .head{
@@ -49,7 +48,7 @@ main{
     height: 16px    ;
     border: none;
     border-radius: 6px;
-    background-color: #eceef2; /* светло-серый цвет */
+    background-color: #eceef2; 
     padding: 10px 10px 10px 10px;
     color:black;
     outline: none; 
@@ -65,7 +64,7 @@ main{
     right: 0px;
     top: 50%;
     transform: translateY(-50%);
-    pointer-events: none; /* чтобы иконка не мешала вводу текста */
+    pointer-events: none; 
     color: #9da2ae;
 }
 
@@ -97,18 +96,9 @@ main{
     margin: 0;
 }
 
-/* .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-} */
-
 
 .container {
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     flex-direction: column;
     width: 100%;
@@ -148,7 +138,6 @@ main{
 }
 
 .speed {
-    /* border: #00f2fe 1px solid; */
     padding: 5px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 7px;
@@ -205,7 +194,7 @@ main{
 .weather-weekly-slider {
     position: relative;
     width: 500px;
-    overflow: hidden; /* Hide overflow */
+    overflow: hidden; 
 }
 
 .weather-weekly {
@@ -215,11 +204,11 @@ main{
 }
 
 .forecast-item {
-    flex: 0 0 100%; /* Each slide takes full width */
+    flex: 0 0 100%;
     box-sizing: border-box;
     padding: 15px;
     text-align: center;
-    margin-right: 10px; /* Space between items */
+    margin-right: 10px; 
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -250,19 +239,16 @@ main{
     display: flex;
     flex-direction:row;
     align-items: center;
-    /* justify-content: center; */
     width: 1000px;
     height: 300px;
     margin-top: 40px;
-    /* grid-template-columns: 1fr; */
     gap: 20px;
     margin-bottom:40px;
 }
 
 .card {
-    /* width: 300px;
-    height: 300px; */
-    width: 80%; /* Устанавливаем ширину карточек */
+
+    width: 80%; 
     max-width: 600px;
     background: white;
     border-radius: 8px;
@@ -285,7 +271,6 @@ main{
 }
 
 .main-image {
-    /* position: absolute; */
     z-index: 1;
     width: 100%;
     height: 100%;
@@ -385,38 +370,6 @@ main{
 }
 
 
-/* .weather-weekly-slider {
-    position: relative;
-    width: 100%;
-    overflow: hidden; 
-}
-
-
-.weather-weekly {
-    display: flex;
-    transition: transform 0.3s ease-in-out;
-    will-change: transform;
-}
-.forecast-item {
-    flex: 0 0 100%;
-    box-sizing: border-box;
-    padding: 15px;
-    text-align: center;
-    margin-right: 10px; 
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-} */
-
-/* .forecast-item {
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 200px;
-    text-align: center;
-    margin-right: 10px;
-} */
 
 .forecast-item h3 {
     margin: 0 0 10px;
@@ -461,17 +414,7 @@ main{
 }
 
 
-/* .footer-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 80px;
-}
 
-.footer-logo img{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-} */
 
 .footer {
     background: -webkit-linear-gradient(90deg, #c9e0e9,#ffffff,hsl(197, 42%, 85%));
@@ -517,13 +460,11 @@ main{
     color: #0056b3;
   }
 
-/* Стиль для контейнера dropdown */
 .dropdown {
     position: relative;
     display: inline-block;
   }
   
-  /* Кнопка выбора языка */
 .language-btn {
     background-color: #007aff;
     color: white;
@@ -538,7 +479,6 @@ main{
     background-color: #0056b3;
   }
   
-  /* Скрытый выпадающий список */
   .dropdown-content {
     display: none;
     position: absolute;
@@ -560,25 +500,10 @@ main{
     background-color: #f1f1f1;
   }
   
-  /* Показ списка при наведении */
   .dropdown:hover .dropdown-content {
     display: block;
   }
-  
 
-
-  
-  /* .language-btn {
-    margin-top: 10px;
-    padding: 5px 10px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    cursor: pointer;
-  }
-  
-  .language-btn:hover {
-    background-color: #f0f0f0;
-  } */
   
   .app-links li {
     display: inline-block;
@@ -649,7 +574,6 @@ main{
     }
 }
 
-/* Стили для модального окна */
 .modal {
     display: none;
     position: fixed;
